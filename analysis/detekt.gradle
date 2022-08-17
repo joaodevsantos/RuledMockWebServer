@@ -1,0 +1,26 @@
+// Applies the Detekt plugin to every module that adds this file to its build.gradle.
+apply plugin: libs.plugins.detekt.get().pluginId
+
+// Configures the detekt plugin.
+detekt {
+    // Detekt configuration file to be used.
+    setConfig(
+        files("${project.rootDir}/analysis/detektConfig.yml")
+    )
+
+}
+
+// Configures 'detekt' gradle task to be within analysis gradle tasks group.
+tasks.named("detekt") { task ->
+    configure(task) {
+        group = "analysis"
+        description = "Runs detekt to find code smells"
+    }
+
+    // Configures detekt reports.
+    reports {
+        md.required.set(false)
+        txt.required.set(false)
+        sarif.required.set(false)
+    }
+}
