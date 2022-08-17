@@ -1,0 +1,28 @@
+// Configures Android lint.
+android {
+    lintOptions {
+        abortOnError true
+        checkReleaseBuilds false
+        checkAllWarnings false
+        warningsAsErrors true
+        checkDependencies true
+
+        // Configure output reports.
+        xmlReport true
+        htmlReport true
+    }
+}
+
+// Configures 'lint' gradle task to be within analysis gradle tasks group.
+tasks.named("lint") { task ->
+    configure(task) {
+        group = "analysis"
+    }
+}
+
+// Configures 'lintFix' gradle task to be within formatting gradle tasks group.
+tasks.named("lintFix") { task ->
+    configure(task) {
+        group = "formatting"
+    }
+}

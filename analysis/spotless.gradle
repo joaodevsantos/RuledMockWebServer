@@ -1,0 +1,40 @@
+// Adds the Spotless plugin to every module that adds this file to its build.gradle
+apply plugin: libs.plugins.spotless.get().pluginId
+
+// Configures Spotless plugin
+spotless {
+    // Sets the rules kotlin files need to validate.
+    kotlin {
+        target '**/*.kt'
+
+        ktlint()
+
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+
+    // Sets the rules miscellaneous files need to validate.
+    format 'misc', {
+        // define the files to apply `misc` to
+        target '**/*.gradle', '*.md', '.gitignore'
+
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+}
+
+// Configures 'spotlessCheck' gradle task to be within analysis gradle tasks group.
+tasks.named("spotlessCheck") { task ->
+    configure(task) {
+        group = "analysis"
+    }
+}
+
+// Configures 'spotlessApply' gradle task to be within formatting gradle tasks group.
+tasks.named("spotlessApply") { task ->
+    configure(task) {
+        group = "formatting"
+    }
+}

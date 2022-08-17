@@ -1,0 +1,9 @@
+dependencyResolutionManagement {
+    // Declares the catalogs to manage dependencies.
+    versionCatalogs {
+        // Declares the 'libs' catalog where we manage implementation dependencies.
+        libs {
+            from(files('libs.versions.toml'))
+        }
+    }
+}

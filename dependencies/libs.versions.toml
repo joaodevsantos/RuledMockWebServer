@@ -1,0 +1,24 @@
+# Declare version numbers that will be referenced later by plugins and libraries.
+[versions]
+gradleplugin = '7.2.2'
+kotlin = '1.7.10'
+androidx-core = '1.8.0'
+junit = '4.13.2'
+okhttp = '4.10.0'
+spotless = '6.9.1'
+detekt = '1.21.0'
+
+# Define the libraries that will be later accessed in our Gradle files.
+[libraries]
+androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
+junit = { module = "junit:junit", version.ref = "androidx-core" }
+okhttp-tls = { module = "com.squareup.okhttp3:okhttp-tls", version.ref = "okhttp" }
+okhttp-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp" }
+
+# Used to define plugins.
+[plugins]
+android-library = { id = "com.android.library", version.ref = "gradleplugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+maven-publish = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
