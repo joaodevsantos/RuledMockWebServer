@@ -1,0 +1,42 @@
+plugins {
+    alias libs.plugins.android.library
+    alias libs.plugins.kotlin.android
+}
+
+// Linters
+apply from: "$project.rootDir/analysis/spotless.gradle"
+apply from: "$project.rootDir/analysis/androidLint.gradle"
+// Static Code Analysis
+apply from: "$project.rootDir/analysis/detekt.gradle"
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+}
+
+dependencies {
+    // OkHttp - TLS
+    implementation libs.okhttp.tls
+    // OkHttp - Mock Web Server
+    implementation libs.okhttp.mockwebserver
+}
